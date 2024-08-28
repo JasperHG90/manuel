@@ -1,0 +1,19 @@
+name: 'Run one-off SQL scripts'
+description: 'Run a SQL script against some database'
+inputs:
+  file:
+    description: 'Path to sql script'
+    required: true
+  dialect:
+    description: 'SQL dialect'
+    required: true
+  dialect_args:
+    description: 'Arguments for the SQL dialect'
+    required: true
+runs:
+  using: 'docker'
+  image: '../../../../scripts/manuel/Dockerfile'
+  args:
+    - ${{ inputs.file }}
+    - ${{ inputs.dialect }}
+    - ${{ inputs.dialect_args }}

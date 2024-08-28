@@ -1,0 +1,81 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-ast
+      - id: check-docstring-first
+      - id: check-toml
+      #- id: check-yaml
+      #  args: [ --allow-multiple-documents ]
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 3.1.1
+    hooks:
+    - id: sqlfluff-lint
+      name: sqlfluff-lint
+      # Set `--processes 0` to use maximum parallelism
+      #  - `--disable-progress-bar` pre-commit suppresses logging already
+      #      this can cause an unneeded slow down.
+      entry: sqlfluff lint --processes 0 --dialect postgres --disable-progress-bar
+      language: python
+      description: "Lints sql files with `SQLFluff`"
+      types: [sql]
+      require_serial: true
+      additional_dependencies: []
+
+    - id: sqlfluff-fix
+      name: sqlfluff-fix
+      # Set a couple of default flags:
+      #  - `--show-lint-violations` shows issues to not require running `sqlfluff lint`
+      #  - `--processes 0` to use maximum parallelism
+      #  - `--disable-progress-bar` pre-commit suppresses logging already
+      #      this can cause an unneeded slow down.
+      # By default, this hook applies all rules.
+      entry: sqlfluff fix --show-lint-violations --dialect postgres --processes 0 --disable-progress-bar
+      language: python
+      description: "Fixes sql lint errors with `SQLFluff`"
+      types: [sql]
+      require_serial: true
+      additional_dependencies: []
+
+  - repo: https://github.com/econchick/interrogate
+    rev: "1.7.0"
+    hooks:
+      - id: interrogate
+        args: [-vv, --fail-under=0, ./shared, ./src]
+
+  - repo: https://github.com/ambv/black
+    rev: 24.1.1
+    hooks:
+      - id: black
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.2.1
+    hooks:
+      - id: ruff
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [
+          'types-PyYAML',
+          'types-decorator',
+          'types-requests',
+          'types-pytz',
+          'types-cachetools',
+          'types-redis'
+        ]
+exclude: 'static/'

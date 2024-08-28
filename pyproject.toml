@@ -1,0 +1,14 @@
+[project]
+name = "manuel"
+version = "0.0.0"
+description = "Lint and execute one-time SQL scripts against some database"
+authors = [
+  {name="Jasper Ginn", email="jasperginn@gmail.com"}
+]
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
