@@ -7,8 +7,34 @@ authors = [
 ]
 requires-python = ">=3.10"
 readme = "README.md"
-dependencies = []
+dependencies = [
+    "pydantic-settings>=2.5.2",
+    "pydantic>=2.9.1",
+    "sqlalchemy>=2.0.34",
+    "sqlfluff>=3.1.1",
+    "typer>=0.12.5",
+]
+
+[project.scripts]
+manuel = "manuel.cli:entrypoint"
+
+[project.optional-dependencies]
+postgres = [
+    "psycopg[binary]>=2.9.9",
+]
+bigquery = [
+    "sqlalchemy-bigquery>=1.11.0",
+]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "devtools",
+    "google-api-core>=2.19.2",
+    "google-auth>=2.34.0",
+    "google-cloud-bigquery>=3.25.0",
+    "pytest-postgresql>=6.1.1",
+]
