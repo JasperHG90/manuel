@@ -48,9 +48,9 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: database
+          POSTGRES_DATABASE: database
           POSTGRES_HOST: '0.0.0.0'
-          POSTGRES_POST: 5432
+          POSTGRES_PORT: 5432
         with:
           file: '.github/workflows/scripts/example.sql'
           dialect: 'postgres'
