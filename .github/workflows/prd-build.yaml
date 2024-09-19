@@ -53,7 +53,7 @@ jobs:
           POSTGRES_HOST: database
           POSTGRES_PORT: 5432
         with:
-          file: '.github/workflows/utils/sql/example.sql'
+          file: '.github/workflows/utils/sql/example_postgres.sql'
           dialect: 'postgres'
   test_action_bigquery:
     runs-on: ubuntu-latest
@@ -66,6 +66,7 @@ jobs:
           docker run -d --rm --name bigquery \
             ghcr.io/goccy/bigquery-emulator:0.6.5 \
             --project=test-project \
+            --dataset=test-dataset \
             --location=europe-west4
           sleep 3
       - uses: ./
@@ -73,5 +74,5 @@ jobs:
           BIGQUERY_PROJECT: test-project # defined in dockerfile
           BIGQUERY_LOCATION: europe-west4
         with:
-          file: '.github/workflows/scripts/example.sql'
+          file: '.github/workflows/utils/sql/example_bq.sql'
           dialect: 'bigquery'
