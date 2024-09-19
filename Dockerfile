@@ -4,14 +4,16 @@ COPY --from=ghcr.io/astral-sh/uv:0.4.10 /uv /bin/uv
 
 WORKDIR /app
 
-RUN --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --no-install-project --no-dev
+RUN --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-dev --package=manuel
 
 COPY src /app/
 
-RUN --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+RUN --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,source=README.md,target=README.md \
-    uv sync --no-dev
+    uv sync --frozen --no-dev --package=manuel
 
 ENV PATH="/app/.venv/bin:$PATH"
 
