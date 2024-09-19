@@ -15,6 +15,6 @@ RUN --mount=type=bind,source=uv.lock,target=uv.lock \
 
 ENV PATH="/.venv/bin:$PATH"
 
-ENV UV_PYTHON=/.venv/bin/python
-
-ENTRYPOINT [ "uv", "run", "manuel", "run" ]
+# Bit silly but since GHA copies the entire directory, and doing so would
+# reinstall manuel but without the extras, we'd get a 'psycopg2 not found' error
+ENTRYPOINT [ "uv", "run", "/.venv/bin/manuel", "run" ]
