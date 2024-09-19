@@ -21,7 +21,7 @@ POSTGRES_DATABASE = "test_db"
 
 @pytest.fixture(scope="module")
 def connection_string() -> str:
-    return "postgresql+psycopg://%s:%s@%s:%s/%s" % (
+    return "postgresql+psycopg2://%s:%s@%s:%s/%s" % (
         POSTGRES_USER,
         POSTGRES_PASSWORD,
         POSTGRES_HOST,
@@ -104,7 +104,7 @@ def test_postgres_sql_executor_format_connection_string(
     )
     assert (
         connection_string
-        == "postgresql+psycopg://postgres:**********@127.0.0.1:65432/test_db"  # pydantic masks secret string
+        == "postgresql+psycopg2://postgres:**********@127.0.0.1:65432/test_db"  # pydantic masks secret string
     )
 
 
@@ -114,8 +114,8 @@ def test_postgres_sql_executor_get_engine(
     with postgres_sql_executor.get_engine(
         connection_string=connection_string
     ) as engine:
-        assert engine.driver == "psycopg"
-        assert isinstance(engine.dialect, postgresql.psycopg.PGDialect_psycopg)
+        assert engine.driver == "psycopg2"
+        assert isinstance(engine.dialect, postgresql.psycopg2.PGDialect_psycopg2)
 
 
 def test_postgres_sql_executor_execute_sql(
@@ -144,6 +144,6 @@ def test_postgres_sql_executor_run(
     postgres_sql_executor.execute_sql = execute_sql_mock
     postgres_sql_executor.run(sql=statement, **config.model_dump())
     get_engine_mock.assert_called_once_with(
-        "postgresql+psycopg://postgres:**********@127.0.0.1:65432/test_db"
+        "postgresql+psycopg2://postgres:**********@127.0.0.1:65432/test_db"
     )
     execute_sql_mock.assert_called_once_with(statement, sqlalchemy_session_mock)
