@@ -1,0 +1,18 @@
+[project]
+name = "devtools"
+version = "0.0.0"
+description = "Development tools for dagster dags"
+authors = [
+  {name="Jasper Ginn", email="jasperginn@gmail.com"}
+]
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+    "coolname>=2.2.0",
+    "docker>=7.1.0",
+    "tenacity>=9.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

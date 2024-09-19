@@ -37,12 +37,3 @@ version:
   GIT_VERSION_ROOT_DIR=/home/vscode/workspace
   GIT_VERSION_PYPROJECT_PATH=/home/vscode/workspace/pyproject.toml
   uv run scripts/git_version.py version
-
-# Run dagster in development model
-dagster_dev:
-    #!/usr/bin/env bash
-    set -eo pipefail
-    mkdir -p .dagster
-    cp dagster.yaml .dagster/dagster.yaml
-    export DAGSTER_HOME=$(pwd)/.dagster
-    uv run packages/luchtmeetnet/dagster_dev.py
