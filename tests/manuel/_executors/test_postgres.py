@@ -3,12 +3,13 @@ from unittest import mock
 
 import pytest
 from devtools import run_container
-from manuel._config import PostgresSqlConfig
-from manuel._executors.postgres import PostgresSqlExecutor
 from pytest_postgresql.janitor import DatabaseJanitor
 from sqlalchemy import Engine, NullPool, create_engine
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import Session
+
+from manuel._config import PostgresSqlConfig
+from manuel._executors.postgres import PostgresSqlExecutor
 
 IMAGE = "postgres:15.1"
 POSTGRES_PASSWORD = "postgres"

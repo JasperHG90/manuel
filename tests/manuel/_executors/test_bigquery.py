@@ -7,10 +7,11 @@ from devtools import run_container
 from google.api_core.client_options import ClientOptions
 from google.auth.credentials import AnonymousCredentials
 from google.cloud import bigquery
-from manuel._config import BigQuerySqlConfig
-from manuel._executors import BigQuerySqlExecutor
 from sqlalchemy import Engine, NullPool, create_engine
 from sqlalchemy.orm import Session
+
+from manuel._config import BigQuerySqlConfig
+from manuel._executors import BigQuerySqlExecutor
 
 PROJECT_ID = "test-project"
 DATASET_NAME = "dataset"

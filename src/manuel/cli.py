@@ -4,8 +4,9 @@ import pathlib as plb
 from typing import Optional
 
 import typer
-from manuel import _core
 from typing_extensions import Annotated
+
+from manuel import _core
 
 logger = logging.getLogger("manuel")
 handler = logging.StreamHandler()

@@ -1,6 +1,7 @@
 import pathlib as plb
 
 import pytest
+
 from manuel import _parser
 
 DIALECT_STATEMENTS = {

@@ -2,6 +2,7 @@ import logging
 import pathlib as plb
 
 import sqlfluff
+
 from manuel import _utils
 
 logger = logging.getLogger("manuel._parser")

@@ -49,6 +49,46 @@ dev-dependencies = [
     "pytest-postgresql>=6.1.1",
 ]
 
+[tool.black]
+line-length = 88
+exclude = '''
+^/(
+  (
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.venv
+    | _build
+    | build
+    | dist
+    | .notebooks
+    | .nox
+  )
+)
+'''
+
+[tool.isort]
+profile = "black"
+extend_skip = [".tmp", ".venv"]
+
+[tool.mypy]
+exclude = "^.tmp/"
+ignore_missing_imports = true
+explicit_package_bases = true
+
+[tool.bandit]
+skips = ['B101']
+
+[tool.ruff]
+lint.ignore = ["E501"]
+extend-exclude = [
+  "__pycache__",
+  "docs",
+  "site",
+  ".tmp"
+]
+
 [tool.pytest.ini_options]
 cache_dir = "/home/vscode/workspace/.cache/pytest"
 pythonpath = [".", "scripts"]
