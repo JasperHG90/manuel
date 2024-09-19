@@ -15,4 +15,6 @@ RUN --mount=type=bind,source=uv.lock,target=uv.lock \
 
 ENV PATH="/.venv/bin:$PATH"
 
+ENV UV_PYTHON=/.venv/bin/python
+
 ENTRYPOINT [ "uv", "run", "manuel", "run" ]
