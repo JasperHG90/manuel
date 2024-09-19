@@ -61,7 +61,8 @@ jobs:
     needs: checks
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: set up bigquery emulator
+        run: |
           docker run -d --rm --name bigquery \
             ghcr.io/goccy/bigquery-emulator:0.6.5 \
             --project=test-project \
