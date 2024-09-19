@@ -104,7 +104,7 @@ def test_postgres_sql_executor_format_connection_string(
     )
     assert (
         connection_string
-        == "postgresql+psycopg2://postgres:**********@127.0.0.1:65432/test_db"  # pydantic masks secret string
+        == "postgresql+psycopg2://postgres:postgres@127.0.0.1:65432/test_db"
     )
 
 
@@ -144,6 +144,6 @@ def test_postgres_sql_executor_run(
     postgres_sql_executor.execute_sql = execute_sql_mock
     postgres_sql_executor.run(sql=statement, **config.model_dump())
     get_engine_mock.assert_called_once_with(
-        "postgresql+psycopg2://postgres:**********@127.0.0.1:65432/test_db"
+        "postgresql+psycopg2://postgres:postgres@127.0.0.1:65432/test_db"
     )
     execute_sql_mock.assert_called_once_with(statement, sqlalchemy_session_mock)

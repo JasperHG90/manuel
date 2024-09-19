@@ -1,5 +1,7 @@
 import logging
 
+import pydantic
+
 from manuel._executors.base import BaseSqlExecutor
 from manuel._utils import requires_extra
 
@@ -23,11 +25,11 @@ class PostgresSqlExecutor(BaseSqlExecutor):
         extra_installed=_has_psycopg,
     )
     def format_connection_string(
-        user: str, password: str, host: str, port: int, database: str
+        user: str, password: pydantic.SecretStr, host: str, port: int, database: str
     ) -> str:
         return "postgresql+psycopg2://%s:%s@%s:%s/%s" % (
             user,
-            password,
+            password.get_secret_value(),
             host,
             port,
             database,

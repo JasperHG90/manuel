@@ -46,6 +46,7 @@ dev-dependencies = [
     "google-auth>=2.34.0",
     "google-cloud-bigquery>=3.25.0",
     "pre-commit>=3.8.0",
+    "psycopg[binary]>=3.2.2",
     "pytest-postgresql>=6.1.1",
 ]
 
