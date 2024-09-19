@@ -46,7 +46,7 @@ def run_container(
 ):
     """Context manager managing docker container lifecycle."""
     client = docker.from_env()
-    client.images.pull(image)
+    client.images.pull(image, platform=container_kwargs.get("platform", None))
     _stop_existing_containers(image_name_prefix)
     try:
         container = client.containers.run(
