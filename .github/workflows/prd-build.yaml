@@ -59,11 +59,14 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Test GHA (bigquery)'
     needs: checks
-    services:
-      database:
-        image: .github/workflows/utils/docker/bigquery.Dockerfile
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          docker run -d --rm --name bigquery \
+            ghcr.io/goccy/bigquery-emulator:0.6.5 \
+            --project=test-project \
+            --location=europe-west4
+          sleep 3
       - uses: ./
         env:
           BIGQUERY_PROJECT: test-project # defined in dockerfile
