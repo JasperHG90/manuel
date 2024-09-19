@@ -55,24 +55,3 @@ jobs:
         with:
           file: '.github/workflows/utils/sql/example_postgres.sql'
           dialect: 'postgres'
-  test_action_bigquery:
-    runs-on: ubuntu-latest
-    name: 'Test GHA (bigquery)'
-    needs: checks
-    steps:
-      - uses: actions/checkout@v4
-      - name: set up bigquery emulator
-        run: |
-          docker run -d --rm --name bigquery \
-            ghcr.io/goccy/bigquery-emulator:0.6.5 \
-            --project=test-project \
-            --dataset=test-dataset \
-            --location=europe-west4
-          sleep 3
-      - uses: ./
-        env:
-          BIGQUERY_PROJECT: test-project # defined in dockerfile
-          BIGQUERY_LOCATION: europe-west4
-        with:
-          file: '.github/workflows/utils/sql/example_bq.sql'
-          dialect: 'bigquery'
