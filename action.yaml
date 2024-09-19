@@ -9,11 +9,10 @@ inputs:
     required: true
   dialect_args:
     description: 'Arguments for the SQL dialect'
-    required: true
+    required: false
 runs:
   using: 'docker'
-  image: '../../../../scripts/manuel/Dockerfile'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.dialect }}
-    - ${{ inputs.dialect_args }}
