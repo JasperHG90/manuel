@@ -27,12 +27,13 @@ jobs:
           python_version: "3.11"
           pre_commit_version: "3.1.1"
           directory: "."
-  test_action:
+  test_action_postgres:
     runs-on: ubuntu-latest
+    name: 'Test GHA (postgres)'
     needs: checks
     services:
       database:
-        image: postgres
+        image: postgres:15.1
         env:
           POSTGRES_DB: testdb
           POSTGRES_PASSWORD: password
@@ -52,5 +53,21 @@ jobs:
           POSTGRES_HOST: database
           POSTGRES_PORT: 5432
         with:
-          file: '.github/workflows/scripts/example.sql'
+          file: '.github/workflows/utils/sql/example.sql'
           dialect: 'postgres'
+  test_action_bigquery:
+    runs-on: ubuntu-latest
+    name: 'Test GHA (bigquery)'
+    needs: checks
+    services:
+      database:
+        image: .github/workflows/utils/docker/bigquery.Dockerfile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        env:
+          BIGQUERY_PROJECT: test-project # defined in dockerfile
+          BIGQUERY_LOCATION: europe-west4
+        with:
+          file: '.github/workflows/scripts/example.sql'
+          dialect: 'bigquery'
