@@ -7,9 +7,6 @@ inputs:
   dialect:
     description: 'SQL dialect'
     required: true
-  dialect_args:
-    description: 'Arguments for the SQL dialect'
-    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
