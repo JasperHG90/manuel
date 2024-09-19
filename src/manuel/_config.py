@@ -1,3 +1,5 @@
+from typing import Optional
+
 import pydantic
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,4 +19,4 @@ class BigQuerySqlConfig(BaseSettings):
 
     project: str
     location: str
-    user_supplied_client: bool = False
+    user_supplied_client: Optional[bool] = False
