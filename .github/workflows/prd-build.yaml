@@ -35,8 +35,8 @@ jobs:
         image: postgres
         env:
           POSTGRES_DB: testdb
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -46,8 +46,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
           POSTGRES_DATABASE: testdb
           POSTGRES_HOST: database
           POSTGRES_PORT: 5432
