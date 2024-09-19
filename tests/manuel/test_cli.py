@@ -67,12 +67,16 @@ def test_run_cmd_with_env_vars(
     script = tmp_path / "script.sql"
     script.touch()
 
-    os.environ.update(executor_map[dialect]["environ"])  # type: ignore
-
-    result = runner.invoke(
-        app,
-        ["run", str(script), dialect],
-    )
+    try:
+        orig = os.environ.copy()
+        os.environ.update(executor_map[dialect]["environ"])  # type: ignore
+        result = runner.invoke(
+            app,
+            ["run", str(script), dialect],
+        )
+    finally:
+        os.environ.clear()
+        os.environ.update(orig)
     assert result.exit_code == 0
 
 
