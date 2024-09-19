@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project --no-dev --package=manuel
+    uv sync --frozen --no-install-project --no-dev --package=manuel --all-extras
 
 COPY src /app/
 
