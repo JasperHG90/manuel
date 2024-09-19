@@ -35,7 +35,6 @@ jobs:
         image: postgres
         env:
           POSTGRES_DB: testdb
-          POSTGRES_USER: user
           POSTGRES_PASSWORD: password
         options: >-
           --health-cmd pg_isready
