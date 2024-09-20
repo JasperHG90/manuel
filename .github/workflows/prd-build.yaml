@@ -56,8 +56,6 @@ jobs:
       matrix:
         dialect: ["postgres", "bigquery", "databricks"]
       fail-fast: false
-    env:
-      VERSION: ${{ needs.version.outputs.VERSION }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -70,10 +68,14 @@ jobs:
       - name: buildx
         uses: docker/setup-buildx-action@v3
       - name: 'Set manuel package version'
+        env:
+          VERSION: ${{ needs.version.outputs.VERSION }}
         run: |
           sed -i -e "s/0.0.0/${{ env.VERSION }}/g" src/manuel/__init__.py
       - name: Push image
         uses: docker/build-push-action@v6
+        env:
+          VERSION: ${{ needs.version.outputs.VERSION }}
         with:
           context: .
           file: ./Dockerfile
