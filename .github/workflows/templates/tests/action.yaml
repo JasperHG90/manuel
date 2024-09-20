@@ -27,7 +27,7 @@ runs:
         uv-version: ${{ inputs.uv_version }}
     - name: install dependencies
       run: |
-        uv sync
+        uv sync --all-extras
       shell: bash
     - name: run tests
       run: |
