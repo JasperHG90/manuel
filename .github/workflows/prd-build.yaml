@@ -55,7 +55,7 @@ jobs:
           build-args: |
             DIALECT=${{ matrix.dialect }}
           push: true
-          tags: ghcr.io/JasperHG90/manuel-${{ matrix.dialect }}:latest
+          tags: ghcr.io/jasperhg90/manuel-${{ matrix.dialect }}:latest
   test_action_postgres:
     runs-on: ubuntu-latest
     name: 'Test GHA (postgres)'
