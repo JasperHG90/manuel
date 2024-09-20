@@ -39,13 +39,14 @@ jobs:
         id: version
         uses: JasperHG90/git-version@v1.0.0
       - name: 'Print version'
+        id: transform_version
         run: |
           echo "Version is ${{ steps.version.outputs.version }}"
           VERSION=${{ steps.version.outputs.version }}
           VERSION="${VERSION//+/\.}"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
     outputs:
-      VERSION: ${{ steps.version.outputs.version }}
+      VERSION: ${{ steps.transform_version.outputs.VERSION }}
   build:
     runs-on: ubuntu-latest
     needs: version
