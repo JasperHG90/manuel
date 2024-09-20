@@ -47,9 +47,13 @@ dev-dependencies = [
     "google-api-core>=2.19.2",
     "google-auth>=2.34.0",
     "google-cloud-bigquery>=3.25.0",
+    "ipykernel>=6.29.5",
     "pre-commit>=3.8.0",
     "psycopg[binary]>=3.2.2",
+    "pyhive>=0.7.0",
+    "pyspark>=3.5.2",
     "pytest-postgresql>=6.1.1",
+    "thrift-sasl>=0.4.3",
 ]
 
 [tool.black]

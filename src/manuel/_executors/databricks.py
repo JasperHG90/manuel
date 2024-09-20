@@ -1,5 +1,7 @@
 import logging
 
+import pydantic
+
 from manuel._executors.base import BaseSqlExecutor
 from manuel._utils import requires_extra
 
@@ -27,14 +29,14 @@ class DatabricksSqlExecutor(BaseSqlExecutor):
         extra_installed=_has_databricks_sql_connector,
     )
     def format_connection_string(
-        access_token: str,
+        token: pydantic.SecretStr,
         server_hostname: str,
         http_path: str,
         catalog: str,
         schema: str,
     ) -> str:
         return TEMPLATE_CONNECTION_STRING % (
-            access_token,
+            token.get_secret_value(),
             server_hostname,
             http_path,
             catalog,
