@@ -27,10 +27,20 @@ executor_map = {
             "BIGQUERY_LOCATION": "US",
         },
     },
+    "databricks": {
+        "args": '{"token": "test", "server_hostname": "test", "http_path": "test", "catalog": "test", "schema": "test"}',
+        "environ": {
+            "DATABRICKS_TOKEN": "test",
+            "DATABRICKS_SERVER_HOST": "test",
+            "DATABRICKS_HTTP_PATH": "test",
+            "DATABRICKS_CATALOG": "test",
+            "DATABRICKS_SCHEMA": "test",
+        },
+    },
 }
 
 
-@pytest.mark.parametrize("dialect", ["postgres", "bigquery"])
+@pytest.mark.parametrize("dialect", ["postgres", "bigquery", "databricks"])
 @mock.patch("manuel.cli._core.run_sql")
 @mock.patch("manuel.cli._core.parse_sql")
 def test_run_cmd_with_dialect_args(
@@ -55,7 +65,7 @@ def test_run_cmd_with_dialect_args(
     assert 1 == 1
 
 
-@pytest.mark.parametrize("dialect", ["postgres", "bigquery"])
+@pytest.mark.parametrize("dialect", ["postgres", "bigquery", "databricks"])
 @mock.patch("manuel.cli._core.run_sql")
 @mock.patch("manuel.cli._core.parse_sql")
 def test_run_cmd_with_env_vars(
@@ -80,7 +90,7 @@ def test_run_cmd_with_env_vars(
     assert result.exit_code == 0
 
 
-@pytest.mark.parametrize("dialect", ["postgres", "bigquery"])
+@pytest.mark.parametrize("dialect", ["postgres", "bigquery", "databricks"])
 @mock.patch("manuel.cli._core.run_sql")
 @mock.patch("manuel.cli._core.parse_sql")
 def test_run_cmd_fails_without_env_vars_or_dialect_args(
