@@ -13,6 +13,10 @@ DIALECT_STATEMENTS = {
         "valid": """SELECT 1 FROM `project.dataset.table`""",
         "invalid": """SELECT 1 FROM `project.dataset.table` WHERE""",
     },
+    "databricks": {
+        "valid": """CREATE TABLE ct.sampleTable (number Int, word String)""",
+        "invalid": """CREATE TABLE ct.sampleTable (number Int, word BigString)""",
+    },
 }
 
 
@@ -30,6 +34,8 @@ def sql_statement_from_file(tmp_path: plb.Path) -> plb.Path:
         ("postgres", "invalid"),
         ("bigquery", "valid"),
         ("bigquery", "invalid"),
+        ("databricks", "valid"),
+        ("databricks", "invalid"),
     ],
 )
 def test_sql_parser_validate(dialect: str, kind: str):
