@@ -41,7 +41,7 @@ jobs:
       - name: 'Print version'
         id: transform_version
         run: |
-          echo "Version is ${{ steps.version.outputs.version }}"
+          echo "Version is ${{ env.version }}"
           VERSION=${{ steps.version.outputs.version }}
           VERSION="${VERSION//+/\.}"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
