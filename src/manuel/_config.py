@@ -29,4 +29,4 @@ class DatabricksSqlConfig(BaseSettings):
     server_hostname: str
     http_path: str
     catalog: str
-    schema: str
+    schema_: str = pydantic.Field(alias="schema")
