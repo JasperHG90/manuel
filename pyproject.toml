@@ -50,6 +50,7 @@ dev-dependencies = [
     "ipykernel>=6.29.5",
     "pre-commit>=3.8.0",
     "psycopg[binary]>=3.2.2",
+    "pytest-coverage>=0.0",
     "pytest-postgresql>=6.1.1",
 ]
 
