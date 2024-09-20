@@ -54,6 +54,13 @@ def _validate(
 def _run(
     path: Annotated[plb.Path, typer.Argument(help="Path to the SQL file to validate")],
     dialect: Annotated[_core.SqlDialect, typer.Argument(help="SQL dialect to use")],
+    dry_run: Annotated[
+        bool,
+        typer.Option(
+            help="Dry run do not commit changes to the database",
+            envvar="MANUEL_DRY_RUN",
+        ),
+    ] = False,
     dialect_args: Annotated[
         Optional[str],
         typer.Option(
@@ -67,6 +74,7 @@ def _run(
     _core.run_sql(
         sql=_core.parse_sql(path=path, dialect=dialect),
         dialect=dialect,
+        dry_run=dry_run,
         engine_config=_core.config_map[dialect](
             **json.loads(dialect_args) if dialect_args else {}
         ),

@@ -11,8 +11,13 @@ logger = logging.getLogger("manuel._executors.base")
 
 class BaseSqlExecutor(abc.ABC):
 
-    def __init__(self, engine_connect_args: Optional[Dict[str, Any]] = None):
+    def __init__(
+        self,
+        engine_connect_args: Optional[Dict[str, Any]] = None,
+        dry_run: bool = False,
+    ):
         self.engine_connect_args = engine_connect_args if engine_connect_args else {}
+        self.dry_run = dry_run
 
     @staticmethod
     @abc.abstractmethod
@@ -37,4 +42,7 @@ class BaseSqlExecutor(abc.ABC):
         with self.get_engine(self.format_connection_string(**engine_kwargs)) as engine:
             with Session(engine) as session:
                 self.execute_sql(sql, session)
-                session.commit()
+                if self.dry_run:
+                    session.rollback()
+                else:
+                    session.commit()
