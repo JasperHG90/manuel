@@ -29,8 +29,8 @@ add_scripts:
   uv add --script scripts/that.py 'typer>=0.12.5'
 
 # Build dockerfile for DAG
-build:
-  docker build -t manuel .
+build dialect:
+  docker build -t manuel/{{dialect}} --build-arg {{dialect}} .
 
 # Get the latest version of the package
 version:
