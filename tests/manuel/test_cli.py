@@ -28,7 +28,7 @@ executor_map = {
         },
     },
     "databricks": {
-        "args": '{"token": "test", "server_hostname": "test", "http_path": "test", "catalog": "test", "schema": "test"}',
+        "args": '{"token": "test", "server_hostname": "test", "http_path": "test", "catalog": "test", "databricks_schema": "test"}',
         "environ": {
             "DATABRICKS_TOKEN": "test",
             "DATABRICKS_SERVER_HOSTNAME": "test",

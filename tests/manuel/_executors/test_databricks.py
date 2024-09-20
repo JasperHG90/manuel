@@ -36,7 +36,7 @@ def config():
         server_hostname=DATABRICKS_SERVER_HOSTNAME,
         http_path=DATABRICKS_HTTP_PATH,
         catalog=DATABRICKS_CATALOG,
-        schema=DATABRICKS_SCHEMA,
+        databricks_schema=DATABRICKS_SCHEMA,
     )
 
 

@@ -33,12 +33,12 @@ class DatabricksSqlExecutor(BaseSqlExecutor):
         server_hostname: str,
         http_path: str,
         catalog: str,
-        schema: str,
+        schema_: str,
     ) -> str:
         return TEMPLATE_CONNECTION_STRING % (
             token.get_secret_value(),
             server_hostname,
             http_path,
             catalog,
-            schema,
+            schema_,
         )
