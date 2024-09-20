@@ -18,12 +18,12 @@ logger = logging.getLogger("manuel._executors.postgres")
 
 class PostgresSqlExecutor(BaseSqlExecutor):
 
+    @staticmethod
     @requires_extra(
         library_name="psycopg2-binary",
         extra_name="postgres",
         extra_installed=_has_psycopg,
     )
-    @staticmethod
     def format_connection_string(
         user: str, password: pydantic.SecretStr, host: str, port: int, database: str
     ) -> str:

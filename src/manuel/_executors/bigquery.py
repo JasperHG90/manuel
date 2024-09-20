@@ -16,12 +16,12 @@ logger = logging.getLogger("manuel._executors.bigquery")
 
 class BigQuerySqlExecutor(BaseSqlExecutor):
 
+    @staticmethod
     @requires_extra(
         library_name="sqlalchemy_bigquery",
         extra_name="bigquery",
         extra_installed=_has_bigquery,
     )
-    @staticmethod
     def format_connection_string(
         project: str, location: str, user_supplied_client: bool = False
     ) -> str:
