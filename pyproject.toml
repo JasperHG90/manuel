@@ -33,6 +33,9 @@ postgres = [
 bigquery = [
     "sqlalchemy-bigquery>=1.11.0",
 ]
+databricks = [
+    "databricks-sql-connector[sqlalchemy]>=3.4.0",
+]
 
 [build-system]
 requires = ["hatchling"]

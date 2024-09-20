@@ -20,3 +20,13 @@ class BigQuerySqlConfig(BaseSettings):
     project: str
     location: str
     user_supplied_client: Optional[bool] = False
+
+
+class DatabricksSqlConfig(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="DATABRICKS_", case_sensitive=False)
+
+    token: pydantic.SecretStr
+    server_hostname: str
+    http_path: str
+    catalog: str
+    schema: str

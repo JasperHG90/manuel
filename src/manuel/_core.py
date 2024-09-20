@@ -9,17 +9,20 @@ from manuel import _config, _executors, _parser
 class SqlDialect(enum.Enum):
     POSTGRES = "postgres"
     BIGQUERY = "bigquery"
+    DATABRICKS = "databricks"
 
 
 executor_map = {
     SqlDialect.POSTGRES: _executors.PostgresSqlExecutor,
     SqlDialect.BIGQUERY: _executors.BigQuerySqlExecutor,
+    SqlDialect.DATABRICKS: _executors.DatabricksSqlExecutor,
 }
 
 
 config_map = {
     SqlDialect.POSTGRES: _config.PostgresSqlConfig,
     SqlDialect.BIGQUERY: _config.BigQuerySqlConfig,
+    SqlDialect.DATABRICKS: _config.DatabricksSqlConfig,
 }
 
 
