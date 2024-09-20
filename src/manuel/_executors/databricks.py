@@ -15,10 +15,6 @@ else:
 
 logger = logging.getLogger("manuel._executors.databricks")
 
-TEMPLATE_CONNECTION_STRING = (
-    "databricks://token:%s@%s?http_path=%s&catalog=%s&schema=%s"
-)
-
 
 class DatabricksSqlExecutor(BaseSqlExecutor):
 
@@ -35,7 +31,7 @@ class DatabricksSqlExecutor(BaseSqlExecutor):
         catalog: str,
         schema_: str,
     ) -> str:
-        return TEMPLATE_CONNECTION_STRING % (
+        return "databricks://token:%s@%s?http_path=%s&catalog=%s&schema=%s" % (
             token.get_secret_value(),
             server_hostname,
             http_path,
