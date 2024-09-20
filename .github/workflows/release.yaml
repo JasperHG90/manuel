@@ -41,6 +41,7 @@ jobs:
         strategy:
             matrix:
               dialect: ["postgres", "bigquery", "databricks"]
+              platform: ["linux/amd64", "linux/arm64"]
             fail-fast: false
         env:
             VERSION: ${{ needs.version.outputs.VERSION }}
@@ -55,15 +56,21 @@ jobs:
                 password: ${{ secrets.GITHUB_TOKEN }}
           - name: buildx
             uses: docker/setup-buildx-action@v3
+          - name: set tag
+            run: |
+                echo "REPO=ghcr.io/jasperhg90/manuel-${{ matrix.dialect }}-$(echo ${{ matrix.platform }} | tr / -)" >> $GITHUB_ENV
           - name: 'Set manuel package version'
             run: |
               sed -i -e "s/0.0.0/${{ env.VERSION }}/g" src/manuel/__init__.py
           - name: Push image
             uses: docker/build-push-action@v6
+            env:
+                REPO: ${{ env.REPO }}
             with:
               context: .
               file: ./Dockerfile
               build-args: |
                 DIALECT=${{ matrix.dialect }}
               push: true
-              tags: ghcr.io/jasperhg90/manuel-${{ matrix.dialect }}:latest,ghcr.io/jasperhg90/manuel-${{ matrix.dialect }}:${{ env.VERSION }}
+              platforms: ${{ matrix.platform }}
+              tags: ${{ env.REPO }}:latest,${{ env.REPO }}:${{ env.VERSION }}
