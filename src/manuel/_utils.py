@@ -1,4 +1,3 @@
-import functools
 import logging
 import pathlib as plb
 
@@ -19,7 +18,6 @@ def read_sql_file(path: plb.Path) -> str:
 
 
 def requires_extra(library_name: str, extra_name: str, extra_installed: bool):
-    @functools.wraps
     def decorator(function):
         def wrapper(*args, **kwargs):
             if not extra_installed:
