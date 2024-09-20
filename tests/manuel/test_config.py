@@ -19,3 +19,13 @@ def test_bigquery_config_from_env_variables():
     os.environ["BIGQUERY_USER_SUPPLIED_CLIENT"] = "True"
 
     _config.BigQuerySqlConfig()
+
+
+def test_databricks_config_from_env_variables():
+    os.environ["DATABRICKS_TOKEN"] = "test"
+    os.environ["DATABRICKS_SERVER_HOSTNAME"] = "test"
+    os.environ["DATABRICKS_HTTP_PATH"] = "test"
+    os.environ["DATABRICKS_CATALOG"] = "test"
+    os.environ["DATABRICKS_SCHEMA"] = "test"
+
+    _config.DatabricksSqlConfig()

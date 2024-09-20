@@ -31,7 +31,7 @@ executor_map = {
         "args": '{"token": "test", "server_hostname": "test", "http_path": "test", "catalog": "test", "schema": "test"}',
         "environ": {
             "DATABRICKS_TOKEN": "test",
-            "DATABRICKS_SERVER_HOST": "test",
+            "DATABRICKS_SERVER_HOSTNAME": "test",
             "DATABRICKS_HTTP_PATH": "test",
             "DATABRICKS_CATALOG": "test",
             "DATABRICKS_SCHEMA": "test",

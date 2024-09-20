@@ -29,4 +29,7 @@ class DatabricksSqlConfig(BaseSettings):
     server_hostname: str
     http_path: str
     catalog: str
-    schema_: str = pydantic.Field(alias="schema")
+    # env_prefix does not apply to aliases, and 'schema' is already an attribute in BaseSettings
+    #  so fixing this with the following alias
+    #  See: https://docs.pydantic.dev/latest/concepts/pydantic_settings/#validation-of-default-values
+    schema_: str = pydantic.Field(alias="databricks_schema")
