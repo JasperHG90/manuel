@@ -57,7 +57,7 @@ jobs:
             uses: docker/setup-buildx-action@v3
           - name: set tag
             run: |
-                echo "REPO=ghcr.io/jasperhg90/manuel-${{ matrix.dialect }} | tr / -)" >> $GITHUB_ENV
+                echo "REPO=ghcr.io/jasperhg90/manuel-${{ matrix.dialect }}" >> $GITHUB_ENV
           - name: 'Set manuel package version'
             run: |
               sed -i -e "s/0.0.0/${{ env.VERSION }}/g" src/manuel/__init__.py
