@@ -1,7 +1,7 @@
 FROM python:3.11.9-slim-bookworm AS build
 ARG DIALECT="postgres"
 
-COPY --from=ghcr.io/astral-sh/uv:0.4.10 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.4.12 /uv /bin/uv
 
 RUN --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
