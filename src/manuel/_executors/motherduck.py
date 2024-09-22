@@ -17,7 +17,7 @@ else:
 logger = logging.getLogger("manuel._executors.motherduck")
 
 
-class DuckdbSqlAlchemyExecutor(BaseSqlAlchemyExecutor):
+class MotherduckSqlAlchemyExecutor(BaseSqlAlchemyExecutor):
 
     @requires_extra(
         library_name="motherduck",

@@ -11,6 +11,7 @@ class SqlDialect(enum.Enum):
     BIGQUERY = "bigquery"
     DATABRICKS = "databricks"
     DUCKDB = "duckdb"
+    MOTHERDUCK = "motherduck"
 
 
 executor_map = {
@@ -18,6 +19,7 @@ executor_map = {
     SqlDialect.BIGQUERY: _executors.BigQuerySqlAlchemyExecutor,
     SqlDialect.DATABRICKS: _executors.DatabricksSqlAlchemyExecutor,
     SqlDialect.DUCKDB: _executors.DuckdbSqlAlchemyExecutor,
+    SqlDialect.MOTHERDUCK: _executors.MotherduckSqlAlchemyExecutor,
 }
 
 
@@ -26,6 +28,7 @@ config_map = {
     SqlDialect.BIGQUERY: _config.BigQuerySqlConfig,
     SqlDialect.DATABRICKS: _config.DatabricksSqlConfig,
     SqlDialect.DUCKDB: _config.DuckdbSqlConfig,
+    SqlDialect.MOTHERDUCK: _config.MotherduckSqlConfig,
 }
 
 

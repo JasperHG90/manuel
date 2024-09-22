@@ -50,6 +50,15 @@ executor_map = {
             "DUCKDB_ALLOW_COMMUNITY_EXTENSIONS": "true",
         },
     },
+    "motherduck": {
+        "args": '{"database": "test", "access_mode": "read_only", "allow_community_extensions": false, "token": "test"}',
+        "environ": {
+            "MOTHERDUCK_DATABASE": "test",
+            "MOTHERDUCK_ACCESS_MODE": "read_only",
+            "MOTHERDUCK_ALLOW_COMMUNITY_EXTENSIONS": "false",
+            "MOTHERDUCK_TOKEN": "test",
+        },
+    },
 }
 
 

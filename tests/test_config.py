@@ -42,3 +42,12 @@ def test_duckdb_config_from_env_variables():
     os.environ["DUCKDB_ALLOW_COMMUNITY_EXTENSIONS"] = "true"
 
     _config.DuckdbSqlConfig()
+
+
+def test_motherduck_config_from_env_variables():
+    os.environ["MOTHERDUCK_DATABASE"] = "test"
+    os.environ["MOTHERDUCK_ACCESS_MODE"] = "automatic"
+    os.environ["MOTHERDUCK_ALLOW_COMMUNITY_EXTENSIONS"] = "true"
+    os.environ["MOTHERDUCK_TOKEN"] = "test"
+
+    _config.MotherduckSqlConfig()

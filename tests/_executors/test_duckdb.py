@@ -145,7 +145,7 @@ def test_duckdb_sql_executor_execute_sql(
 
 
 @mock.patch("manuel._executors.base.Session")
-def test_postgres_sql_executor_run(
+def test_duckdb_sql_executor_run(
     mock_session: mock.MagicMock,
     statement: str,
     duckdb_sql_executor: DuckdbSqlAlchemyExecutor,
