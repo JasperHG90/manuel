@@ -42,14 +42,24 @@ class DuckdbAccessMode(enum.Enum):
     READ_WRITE = "read_write"
 
 
-class DuckdbSqlConfig(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="DUCKDB_", case_sensitive=False)
+class DuckdbSqlBaseConfig(BaseSettings):
 
     database: str
     access_mode: DuckdbAccessMode = DuckdbAccessMode.AUTOMATIC
+    allow_community_extensions: bool = True
+
+
+class DuckdbSqlConfig(DuckdbSqlBaseConfig):
+    model_config = SettingsConfigDict(env_prefix="DUCKDB_", case_sensitive=False)
+
     s3_access_key_id: Optional[pydantic.SecretStr] = None
     s3_secret_access_key: Optional[pydantic.SecretStr] = None
     s3_endpoint: Optional[str] = None
     s3_region: Optional[str] = None
     s3_use_ssl: bool = True
-    allow_community_extensions: bool = True
+
+
+class MotherduckSqlConfig(DuckdbSqlBaseConfig):
+    model_config = SettingsConfigDict(env_prefix="MOTHERDUCK_", case_sensitive=False)
+
+    token: pydantic.SecretStr

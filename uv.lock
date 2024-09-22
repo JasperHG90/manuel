@@ -885,6 +885,9 @@ databricks = [
 duckdb = [
     { name = "duckdb-engine" },
 ]
+motherduck = [
+    { name = "duckdb-engine" },
+]
 postgres = [
     { name = "psycopg2-binary" },
 ]
@@ -906,6 +909,7 @@ dev = [
 requires-dist = [
     { name = "databricks-sql-connector", extras = ["sqlalchemy"], marker = "extra == 'databricks'", specifier = ">=3.4.0" },
     { name = "duckdb-engine", marker = "extra == 'duckdb'", specifier = ">=0.13.2" },
+    { name = "duckdb-engine", marker = "extra == 'motherduck'", specifier = ">=0.13.2" },
     { name = "psycopg2-binary", marker = "extra == 'postgres'", specifier = ">=2.9.9" },
     { name = "pydantic", specifier = ">=2.9.1" },
     { name = "pydantic-settings", specifier = ">=2.5.2" },

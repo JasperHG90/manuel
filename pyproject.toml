@@ -39,6 +39,9 @@ databricks = [
 duckdb = [
     "duckdb-engine>=0.13.2",
 ]
+motherduck = [
+    "duckdb-engine>=0.13.2",
+]
 
 [build-system]
 requires = ["hatchling"]
