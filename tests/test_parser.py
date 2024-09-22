@@ -19,7 +19,7 @@ DIALECT_STATEMENTS = {
     },
     "duckdb": {
         "valid": """CREATE TABLE test_table (id INTEGER, age INTEGER)""",
-        "invalid": """CREATE TABLE test_table (id INTEGER PRIMARY KEY, age INTEGER)""",
+        "invalid": """CREATE TABLE test_table (id SERIAL INTEGER PRIMARY KEY, age INTEGER)""",
     },
 }
 
