@@ -35,11 +35,7 @@ class DuckdbSqlAlchemyExecutor(BaseSqlAlchemyExecutor):
         s3_region: str,
         s3_use_ssl: bool,
     ) -> str:
-        connection_string = (
-            f"duckdb://{database}"
-            if database != ":memory:"
-            else f"duckdb:///{database}"
-        )
+        connection_string = "duckdb:///%s" % (database)
         connect_args = {
             "config": {
                 "access_mode": access_mode.value,
