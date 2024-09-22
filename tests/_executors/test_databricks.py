@@ -4,7 +4,7 @@ import databricks
 import pytest
 
 from manuel._config import DatabricksSqlConfig
-from manuel._executors import DatabricksSqlExecutor
+from manuel._executors import DatabricksSqlAlchemyExecutor
 
 DATABRICKS_TOKEN = "hgghew78876rtausytfjhvda"
 DATABRICKS_SERVER_HOSTNAME = "something.local.databricks.com"
@@ -25,8 +25,8 @@ def connection_string() -> str:
 
 
 @pytest.fixture
-def databricks_sql_executor() -> DatabricksSqlExecutor:
-    return DatabricksSqlExecutor()
+def databricks_sql_executor() -> DatabricksSqlAlchemyExecutor:
+    return DatabricksSqlAlchemyExecutor()
 
 
 @pytest.fixture
@@ -49,7 +49,7 @@ def statement() -> str:
 
 
 def test_databricks_sql_executor_format_connection_string(
-    databricks_sql_executor: DatabricksSqlExecutor, config: DatabricksSqlConfig
+    databricks_sql_executor: DatabricksSqlAlchemyExecutor, config: DatabricksSqlConfig
 ):
     connection_string = databricks_sql_executor.format_connection_string(
         **config.model_dump()
@@ -61,7 +61,7 @@ def test_databricks_sql_executor_format_connection_string(
 
 
 def test_databricks_sql_executor_get_engine(
-    databricks_sql_executor: DatabricksSqlExecutor, connection_string: str
+    databricks_sql_executor: DatabricksSqlAlchemyExecutor, connection_string: str
 ):
     with databricks_sql_executor.get_engine(
         connection_string=connection_string
@@ -74,7 +74,7 @@ def test_databricks_sql_executor_get_engine(
 def test_databricks_sql_executor_run(
     mock_session: mock.MagicMock,
     statement: str,
-    databricks_sql_executor: DatabricksSqlExecutor,
+    databricks_sql_executor: DatabricksSqlAlchemyExecutor,
     config: DatabricksSqlConfig,
 ):
     get_engine_mock = mock.MagicMock()

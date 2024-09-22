@@ -11,7 +11,7 @@ from sqlalchemy import Engine, NullPool, create_engine
 from sqlalchemy.orm import Session
 
 from manuel._config import BigQuerySqlConfig
-from manuel._executors import BigQuerySqlExecutor
+from manuel._executors import BigQuerySqlAlchemyExecutor
 
 PROJECT_ID = "test-project"
 DATASET_NAME = "dataset"
@@ -36,8 +36,8 @@ def client() -> bigquery.Client:
 
 
 @pytest.fixture
-def bigquery_sql_executor(client: bigquery.Client) -> BigQuerySqlExecutor:
-    return BigQuerySqlExecutor(engine_connect_args={"client": client})
+def bigquery_sql_executor(client: bigquery.Client) -> BigQuerySqlAlchemyExecutor:
+    return BigQuerySqlAlchemyExecutor(engine_connect_args={"client": client})
 
 
 @pytest.fixture
@@ -104,7 +104,7 @@ def statement() -> str:
     ],
 )
 def test_bigquery_sql_executor_format_connection_string(
-    bigquery_sql_executor: BigQuerySqlExecutor, config: BigQuerySqlConfig
+    bigquery_sql_executor: BigQuerySqlAlchemyExecutor, config: BigQuerySqlConfig
 ):
     connection_string = bigquery_sql_executor.format_connection_string(
         **config.model_dump()
@@ -117,7 +117,9 @@ def test_bigquery_sql_executor_format_connection_string(
     )
 
 
-def test_bigquery_sql_executor_get_engine(bigquery_sql_executor: BigQuerySqlExecutor):
+def test_bigquery_sql_executor_get_engine(
+    bigquery_sql_executor: BigQuerySqlAlchemyExecutor,
+):
     with bigquery_sql_executor.get_engine(
         connection_string="bigquery://test-project&location=europe-west4?user_supplied_client=True"
     ) as engine:
@@ -126,7 +128,7 @@ def test_bigquery_sql_executor_get_engine(bigquery_sql_executor: BigQuerySqlExec
 
 
 def test_bigquery_sql_executor_execute_sql(
-    statement: str, bigquery_sql_executor: BigQuerySqlExecutor, session: Session
+    statement: str, bigquery_sql_executor: BigQuerySqlAlchemyExecutor, session: Session
 ):
     bigquery_sql_executor.execute_sql(sql=statement, session=session)
     session.rollback()
@@ -136,7 +138,7 @@ def test_bigquery_sql_executor_execute_sql(
 def test_bigquery_sql_executor_run(
     mock_session: mock.MagicMock,
     statement: str,
-    bigquery_sql_executor: BigQuerySqlExecutor,
+    bigquery_sql_executor: BigQuerySqlAlchemyExecutor,
     config: BigQuerySqlConfig,
 ):
     get_engine_mock = mock.MagicMock()

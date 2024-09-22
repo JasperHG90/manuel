@@ -9,7 +9,7 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import Session
 
 from manuel._config import PostgresSqlConfig
-from manuel._executors.postgres import PostgresSqlExecutor
+from manuel._executors.postgres import PostgresSqlAlchemyExecutor
 
 IMAGE = "postgres:15.1"
 POSTGRES_PASSWORD = "postgres"
@@ -31,8 +31,8 @@ def connection_string() -> str:
 
 
 @pytest.fixture
-def postgres_sql_executor() -> PostgresSqlExecutor:
-    return PostgresSqlExecutor()
+def postgres_sql_executor() -> PostgresSqlAlchemyExecutor:
+    return PostgresSqlAlchemyExecutor()
 
 
 @pytest.fixture
@@ -97,7 +97,7 @@ def statement() -> str:
 
 
 def test_postgres_sql_executor_format_connection_string(
-    postgres_sql_executor: PostgresSqlExecutor, config: PostgresSqlConfig
+    postgres_sql_executor: PostgresSqlAlchemyExecutor, config: PostgresSqlConfig
 ):
     connection_string = postgres_sql_executor.format_connection_string(
         **config.model_dump()
@@ -109,7 +109,7 @@ def test_postgres_sql_executor_format_connection_string(
 
 
 def test_postgres_sql_executor_get_engine(
-    postgres_sql_executor: PostgresSqlExecutor, connection_string: str
+    postgres_sql_executor: PostgresSqlAlchemyExecutor, connection_string: str
 ):
     with postgres_sql_executor.get_engine(
         connection_string=connection_string
@@ -119,7 +119,7 @@ def test_postgres_sql_executor_get_engine(
 
 
 def test_postgres_sql_executor_execute_sql(
-    statement: str, postgres_sql_executor: PostgresSqlExecutor, session: Session
+    statement: str, postgres_sql_executor: PostgresSqlAlchemyExecutor, session: Session
 ):
     postgres_sql_executor.execute_sql(sql=statement, session=session)
     session.rollback()
@@ -129,7 +129,7 @@ def test_postgres_sql_executor_execute_sql(
 def test_postgres_sql_executor_run(
     mock_session: mock.MagicMock,
     statement: str,
-    postgres_sql_executor: PostgresSqlExecutor,
+    postgres_sql_executor: PostgresSqlAlchemyExecutor,
     config: PostgresSqlConfig,
 ):
     get_engine_mock = mock.MagicMock()
