@@ -9,7 +9,7 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import Session
 
 from manuel._config import PostgresSqlConfig
-from manuel._executors.postgres import PostgresSqlAlchemyExecutor
+from manuel._executors import PostgresSqlAlchemyExecutor
 
 IMAGE = "postgres:15.1"
 POSTGRES_PASSWORD = "postgres"

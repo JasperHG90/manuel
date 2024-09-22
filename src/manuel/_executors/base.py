@@ -27,7 +27,7 @@ class BaseSqlAlchemyExecutor(BaseSqlExecutor):
 
     @staticmethod
     @abc.abstractmethod
-    def format_connection_string(self, **kwargs) -> str: ...
+    def format_connection_string(**kwargs) -> str: ...
 
     @contextlib.contextmanager
     def get_engine(self, connection_string: str) -> Iterator[Engine]:
