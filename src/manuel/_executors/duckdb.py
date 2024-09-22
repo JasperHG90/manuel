@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 
 import pydantic
 
@@ -29,8 +30,8 @@ class DuckdbSqlAlchemyExecutor(BaseSqlAlchemyExecutor):
         database: str,
         access_mode: DuckdbAccessMode,
         allow_community_extensions: bool,
-        s3_access_key_id: pydantic.SecretStr,
-        s3_secret_access_key: pydantic.SecretStr,
+        s3_access_key_id: Optional[pydantic.SecretStr],
+        s3_secret_access_key: Optional[pydantic.SecretStr],
         s3_endpoint: str,
         s3_region: str,
         s3_use_ssl: bool,
