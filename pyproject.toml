@@ -36,6 +36,9 @@ bigquery = [
 databricks = [
     "databricks-sql-connector[sqlalchemy]>=3.4.0",
 ]
+duckdb = [
+    "duckdb-engine>=0.13.2",
+]
 
 [build-system]
 requires = ["hatchling"]

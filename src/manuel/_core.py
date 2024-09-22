@@ -10,12 +10,14 @@ class SqlDialect(enum.Enum):
     POSTGRES = "postgres"
     BIGQUERY = "bigquery"
     DATABRICKS = "databricks"
+    DUCKDB = "duckdb"
 
 
 executor_map = {
     SqlDialect.POSTGRES: _executors.PostgresSqlAlchemyExecutor,
     SqlDialect.BIGQUERY: _executors.BigQuerySqlAlchemyExecutor,
     SqlDialect.DATABRICKS: _executors.DatabricksSqlAlchemyExecutor,
+    SqlDialect.DUCKDB: _executors.DuckdbSqlAlchemyExecutor,
 }
 
 
@@ -23,6 +25,7 @@ config_map = {
     SqlDialect.POSTGRES: _config.PostgresSqlConfig,
     SqlDialect.BIGQUERY: _config.BigQuerySqlConfig,
     SqlDialect.DATABRICKS: _config.DatabricksSqlConfig,
+    SqlDialect.DUCKDB: _config.DuckdbSqlConfig,
 }
 
 

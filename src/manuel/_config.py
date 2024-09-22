@@ -1,3 +1,4 @@
+import enum
 from typing import Optional
 
 import pydantic
@@ -33,3 +34,22 @@ class DatabricksSqlConfig(BaseSettings):
     #  so fixing this with the following alias
     #  See: https://docs.pydantic.dev/latest/concepts/pydantic_settings/#validation-of-default-values
     schema_: str = pydantic.Field(alias="databricks_schema")
+
+
+class DuckdbAccessMode(enum.Enum):
+    AUTOMATIC = "automatic"
+    READ_ONLY = "read_only"
+    READ_WRITE = "read_write"
+
+
+class DuckdbSqlConfig(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="DUCKDB_", case_sensitive=False)
+
+    database: str
+    access_mode: DuckdbAccessMode = DuckdbAccessMode.AUTOMATIC
+    s3_access_key_id: Optional[pydantic.SecretStr] = None
+    s3_secret_access_key: Optional[pydantic.SecretStr] = None
+    s3_endpoint: Optional[str] = None
+    s3_region: Optional[str] = None
+    s3_use_ssl: bool = True
+    allow_community_extensions: bool = True
