@@ -40,7 +40,7 @@ jobs:
             packages: write
         strategy:
             matrix:
-              dialect: ["postgres", "bigquery", "databricks"]
+              dialect: ["postgres", "bigquery", "databricks", "duckdb"]
             fail-fast: false
         env:
             VERSION: ${{ needs.version.outputs.VERSION }}
