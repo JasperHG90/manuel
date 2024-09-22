@@ -1,6 +1,6 @@
 import logging
 
-from manuel._executors.base import BaseSqlExecutor
+from manuel._executors.base import BaseSqlAlchemyExecutor
 from manuel._utils import requires_extra
 
 try:
@@ -14,7 +14,7 @@ else:
 logger = logging.getLogger("manuel._executors.bigquery")
 
 
-class BigQuerySqlExecutor(BaseSqlExecutor):
+class BigQuerySqlAlchemyExecutor(BaseSqlAlchemyExecutor):
 
     @staticmethod
     @requires_extra(

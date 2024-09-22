@@ -1,3 +1,3 @@
-from .bigquery import BigQuerySqlExecutor  # noqa
-from .databricks import DatabricksSqlExecutor  # noqa
-from .postgres import PostgresSqlExecutor  # noqa
+from .bigquery import BigQuerySqlAlchemyExecutor  # noqa
+from .databricks import DatabricksSqlAlchemyExecutor  # noqa
+from .postgres import PostgresSqlAlchemyExecutor  # noqa

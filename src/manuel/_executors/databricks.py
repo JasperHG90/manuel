@@ -2,7 +2,7 @@ import logging
 
 import pydantic
 
-from manuel._executors.base import BaseSqlExecutor
+from manuel._executors.base import BaseSqlAlchemyExecutor
 from manuel._utils import requires_extra
 
 try:
@@ -16,7 +16,7 @@ else:
 logger = logging.getLogger("manuel._executors.databricks")
 
 
-class DatabricksSqlExecutor(BaseSqlExecutor):
+class DatabricksSqlAlchemyExecutor(BaseSqlAlchemyExecutor):
 
     @staticmethod
     @requires_extra(

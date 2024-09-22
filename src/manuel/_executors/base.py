@@ -11,6 +11,12 @@ logger = logging.getLogger("manuel._executors.base")
 
 class BaseSqlExecutor(abc.ABC):
 
+    @abc.abstractmethod
+    def run(self, sql: str, **engine_kwargs): ...
+
+
+class BaseSqlAlchemyExecutor(BaseSqlExecutor):
+
     def __init__(
         self,
         engine_connect_args: Optional[Dict[str, Any]] = None,

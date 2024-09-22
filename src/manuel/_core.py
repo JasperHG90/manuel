@@ -13,9 +13,9 @@ class SqlDialect(enum.Enum):
 
 
 executor_map = {
-    SqlDialect.POSTGRES: _executors.PostgresSqlExecutor,
-    SqlDialect.BIGQUERY: _executors.BigQuerySqlExecutor,
-    SqlDialect.DATABRICKS: _executors.DatabricksSqlExecutor,
+    SqlDialect.POSTGRES: _executors.PostgresSqlAlchemyExecutor,
+    SqlDialect.BIGQUERY: _executors.BigQuerySqlAlchemyExecutor,
+    SqlDialect.DATABRICKS: _executors.DatabricksSqlAlchemyExecutor,
 }
 
 
