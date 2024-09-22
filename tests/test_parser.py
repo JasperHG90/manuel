@@ -17,6 +17,10 @@ DIALECT_STATEMENTS = {
         "valid": """CREATE TABLE ct.sampleTable (number Int, word String)""",
         "invalid": """CREATE TABLE ct.sampleTable (number Int, word BigString)""",
     },
+    "duckdb": {
+        "valid": """CREATE TABLE test_table (id INTEGER, age INTEGER)""",
+        "invalid": """CREATE TABLE test_table (id INTEGER PRIMARY KEY, age INTEGER)""",
+    },
 }
 
 
@@ -36,6 +40,8 @@ def sql_statement_from_file(tmp_path: plb.Path) -> plb.Path:
         ("bigquery", "invalid"),
         ("databricks", "valid"),
         ("databricks", "invalid"),
+        ("duckdb", "valid"),
+        ("duckdb", "invalid"),
     ],
 )
 def test_sql_parser_validate(dialect: str, kind: str):

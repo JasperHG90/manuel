@@ -29,3 +29,16 @@ def test_databricks_config_from_env_variables():
     os.environ["DATABRICKS_SCHEMA"] = "test"
 
     _config.DatabricksSqlConfig()
+
+
+def test_duckdb_config_from_env_variables():
+    os.environ["DUCKDB_DATABASE"] = "test"
+    os.environ["DUCKDB_ACCESS_MODE"] = "automatic"
+    os.environ["DUCKDB_S3_ACCESS_KEY_ID"] = "test"
+    os.environ["DUCKDB_S3_SECRET_ACCESS_KEY"] = "test"
+    os.environ["DUCKDB_S3_ENDPOINT"] = "test"
+    os.environ["DUCKDB_S3_REGION"] = "test"
+    os.environ["DUCKDB_S3_USE_SSL"] = "true"
+    os.environ["DUCKDB_ALLOW_COMMUNITY_EXTENSIONS"] = "true"
+
+    _config.DuckdbSqlConfig()

@@ -37,6 +37,19 @@ executor_map = {
             "DATABRICKS_SCHEMA": "test",
         },
     },
+    "duckdb": {
+        "args": '{"database": "test", "access_mode": "automatic", "s3_access_key_id": "test", "s3_secret_access_key": "test", "s3_endpoint": "test", "s3_region": "test", "s3_use_ssl": true, "allow_community_extensions": true}',
+        "environ": {
+            "DUCKDB_DATABASE": "test",
+            "DUCKDB_ACCESS_MODE": "automatic",
+            "DUCKDB_S3_ACCESS_KEY_ID": "test",
+            "DUCKDB_S3_SECRET_ACCESS_KEY": "test",
+            "DUCKDB_S3_ENDPOINT": "test",
+            "DUCKDB_S3_REGION": "test",
+            "DUCKDB_S3_USE_SSL": "true",
+            "DUCKDB_ALLOW_COMMUNITY_EXTENSIONS": "true",
+        },
+    },
 }
 
 
