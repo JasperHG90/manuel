@@ -2,7 +2,7 @@ import pathlib as plb
 
 import pytest
 
-from manuel import _parser
+from manuel import _core, _parser
 
 DIALECT_STATEMENTS = {
     "postgres": {
@@ -29,6 +29,16 @@ def sql_statement_from_file(tmp_path: plb.Path) -> plb.Path:
     sql_file = tmp_path / "test.sql"
     sql_file.write_text("SELECT 1 FROM public.table;")
     return sql_file
+
+
+@pytest.fixture
+def sql() -> str:
+    return "SELECT 1;"
+
+
+@pytest.mark.parametrize("dialect", [d.value for d in _core.SqlDialect])
+def test_sql_dialect_mapping_valid(dialect: str):
+    _parser.SqlParser(sql="SELECT 1;", dialect=dialect)
 
 
 @pytest.mark.parametrize(

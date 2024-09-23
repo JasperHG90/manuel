@@ -11,7 +11,7 @@ class SqlDialect(enum.Enum):
     BIGQUERY = "bigquery"
     DATABRICKS = "databricks"
     DUCKDB = "duckdb"
-    MOTHERDUCK = "motherduck"
+    MOTHERDUCK = "duckdb"
 
 
 executor_map = {
