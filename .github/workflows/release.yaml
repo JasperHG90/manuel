@@ -23,7 +23,7 @@ jobs:
               fetch-depth: 0
           - name: 'Get version'
             id: version
-            uses: JasperHG90/git-version@v3
+            uses: JasperHG90/git-version@v4
           - name: 'Print version'
             id: transform_version
             run: |
