@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 'checks'
         uses: ./.github/workflows/templates/checks
         with:
@@ -32,7 +32,7 @@ jobs:
     needs: checks
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 'tests'
         uses: ./.github/workflows/templates/tests
         with:
@@ -56,7 +56,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./
         env:
           POSTGRES_USER: user
